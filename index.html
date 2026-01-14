@@ -139,6 +139,27 @@ footer{
   line-height:1.6em;
 }
 
+/* BANNER HOME PERSONALIZAT */
+#home {
+  background: linear-gradient(to right, #ffdde1, #ee9ca7);
+  border-radius: 15px;
+  padding: 50px 20px;
+  margin-bottom: 30px;
+  text-align:center;
+  box-shadow:0 8px 20px rgba(0,0,0,0.1);
+  animation: fadeIn 1.5s;
+}
+#home h2{
+  font-size:2em;
+  color:#fff;
+  margin-bottom:15px;
+}
+#home p{
+  font-size:1.2em;
+  color:#fff;
+  line-height:1.5em;
+}
+
 /* FLOARE ANIMATE */
 .flower-container {
   position: relative;
@@ -204,10 +225,11 @@ footer{
   <a href="#" onclick="show('about')">Despre noi</a>
 </nav>
 
-<!-- HOME -->
+<!-- HOME PERSONALIZAT -->
 <section id="home" class="active">
-  <h2>Bine ai venit!</h2>
-  <p>Flori proaspete, livrare rapidă, design colorat și dinamic!</p>
+  <h2>🌸 Bine ai venit la florăria noastră online!</h2>
+  <p>Descoperă flori proaspete, culori vii și aranjamente care îți aduc zâmbetul pe buze! 💐  
+     Fiecare floare e selectată cu grijă pentru tine. 🌼🌷🌹</p>
 </section>
 
 <!-- BUN VENIT -->
@@ -226,10 +248,11 @@ footer{
   </p>
 </section>
 
-<!-- CATALOG -->
+<!-- CATALOG (flori noi incluse) -->
 <section id="catalog">
   <h2>🌼 Catalog Flori</h2>
   <div class="products">
+    <!-- toate florile vechi + noi -->
     <div class="card"><img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400"><h3>Trandafiri</h3><p>50 lei</p><button onclick="add('Trandafiri',50)">Adaugă</button></div>
     <div class="card"><img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=400"><h3>Lalele</h3><p>40 lei</p><button onclick="add('Lalele',40)">Adaugă</button></div>
     <div class="card"><img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?w=400"><h3>Orhidee</h3><p>70 lei</p><button onclick="add('Orhidee',70)">Adaugă</button></div>
@@ -242,6 +265,9 @@ footer{
     <div class="card"><img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec11?w=400"><h3>Orhidee roz</h3><p>75 lei</p><button onclick="add('Orhidee roz',75)">Adaugă</button></div>
     <div class="card"><img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400"><h3>Bujori</h3><p>80 lei</p><button onclick="add('Bujori',80)">Adaugă</button></div>
     <div class="card"><img src="https://images.unsplash.com/photo-1536305036250-0d0f1db8fef7?w=400"><h3>Crini albi</h3><p>60 lei</p><button onclick="add('Crini albi',60)">Adaugă</button></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=400"><h3>Ghiocel</h3><p>20 lei</p><button onclick="add('Ghiocel',20)">Adaugă</button></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1556837738-bce5c5750a43?w=400"><h3>Violete</h3><p>15 lei</p><button onclick="add('Violete',15)">Adaugă</button></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1504197885-65f2dcf987d8?w=400"><h3>Iasomie</h3><p>35 lei</p><button onclick="add('Iasomie',35)">Adaugă</button></div>
   </div>
 </section>
 
@@ -268,6 +294,7 @@ footer{
       <option value="Constanța">Constanța</option>
       <option value="Sibiu">Sibiu</option>
       <option value="Alba">Alba</option>
+      <option value="Prahova">Prahova</option>
       <option value="Bihor">Bihor</option>
     </select>
     <textarea name="products" id="products" readonly placeholder="Produse comandate"></textarea>
@@ -332,45 +359,12 @@ document.getElementById("welcome").addEventListener("click", function(e){
   let op = 1;
   const floatUp = setInterval(()=>{
     y -= 1;
-    op -= 0.01;
+    op -= 0.02;
     flower.style.top = y + "px";
     flower.style.opacity = op;
-    if(op <= 0){
-      flower.remove();
-      clearInterval(floatUp);
-    }
-  }, 16);
+    if(op<=0) { clearInterval(floatUp); flower.remove(); }
+  },20);
 });
-
-// CONFETTI FLORI LA ADAUGARE PRODUS
-function showConfetti(){
-  const confettiColors = ["🌸","🌹","🌼","💐","🌻"];
-  for(let i=0;i<10;i++){
-    const f = document.createElement("span");
-    f.textContent = confettiColors[Math.floor(Math.random()*confettiColors.length)];
-    f.style.position = "absolute";
-    f.style.left = (Math.random()*window.innerWidth)+"px";
-    f.style.top = "0px";
-    f.style.fontSize = (12+Math.random()*20)+"px";
-    f.style.opacity = 1;
-    f.style.pointerEvents="none";
-    document.body.appendChild(f);
-
-    let top = 0;
-    let op = 1;
-    const fall = setInterval(()=>{
-      top += 2 + Math.random()*2;
-      op -= 0.005;
-      f.style.top = top + "px";
-      f.style.opacity = op;
-      if(op<=0){
-        f.remove();
-        clearInterval(fall);
-      }
-    },16);
-  }
-}
 </script>
-
 </body>
 </html>
