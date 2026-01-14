@@ -20,7 +20,7 @@ header{
   text-align:center;
   box-shadow:0 4px 15px rgba(0,0,0,0.2);
 }
-header h1{font-size:2.5em;margin:0;text-shadow:1px 1px 3px #000;}
+header h1{font-size:2.8em;margin:0;text-shadow:2px 2px 5px #000;}
 nav{display:flex;justify-content:center;flex-wrap:wrap;background:#f50057;box-shadow:0 2px 10px rgba(0,0,0,0.2);}
 nav a{
   padding:15px 25px;
@@ -131,11 +131,11 @@ footer{
 
 /* ANIMATII */
 @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
-@media(max-width:600px){
-  nav a{padding:10px;}
-  .card img{height:150px;}
-  #cartPanel{width:80%;}
-}
+.slider{position:relative;width:100%;max-width:1000px;margin:auto;overflow:hidden;border-radius:20px;}
+.slides{display:flex;transition:0.5s;}
+.slide{min-width:100%;transition:0.5s;}
+.slide img{width:100%;border-radius:20px;}
+@media(max-width:600px){nav a{padding:10px;}.card img{height:150px;}#cartPanel{width:80%;}}
 </style>
 </head>
 <body>
@@ -154,98 +154,48 @@ footer{
 </nav>
 
 <section id="home" class="active">
-  <h2>🌸 Bine ai venit!</h2>
-  <p>Descoperă flori proaspete și colorate, cu energie pozitivă!</p>
+  <div class="slider">
+    <div class="slides">
+      <div class="slide"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/Rose_Red_1.jpg" alt="Trandafiri"></div>
+      <div class="slide"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0c/Tulipa_gesneriana_Lawrence.JPG" alt="Lalele"></div>
+      <div class="slide"><img src="https://upload.wikimedia.org/wikipedia/commons/1/12/Phalaenopsis_JPEG.png" alt="Orhidee"></div>
+    </div>
+  </div>
+  <h2>🌸 Descoperă cele mai frumoase flori!</h2>
+  <p>Fiecare floare e aleasă cu dragoste și livrată rapid direct la tine acasă 💐</p>
 </section>
 
 <section id="welcome">
   <h2>🌞 Bun venit în lumea florilor! 🌸</h2>
-  <p>Fiecare floare e aleasă cu grijă și dragoste! 💐</p>
+  <p>Promoții speciale și cele mai noi buchete te așteaptă!</p>
 </section>
 
 <section id="catalog">
   <h2>🌼 Catalog Flori</h2>
   <div class="products">
-    <!-- TOATE FLORILE, cu poze reale -->
-    <div class="card">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Rose_Red_1.jpg/400px-Rose_Red_1.jpg">
-      <h3>Trandafiri</h3><p>50 lei</p>
-      <button onclick="add('Trandafiri',50,event)">Adaugă</button>
-    </div>
-    <div class="card">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Tulipa_gesneriana_Lawrence.JPG/400px-Tulipa_gesneriana_Lawrence.JPG">
-      <h3>Lalele</h3><p>40 lei</p>
-      <button onclick="add('Lalele',40,event)">Adaugă</button>
-    </div>
-    <div class="card">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Phalaenopsis_JPEG.png/400px-Phalaenopsis_JPEG.png">
-      <h3>Orhidee</h3><p>70 lei</p>
-      <button onclick="add('Orhidee',70,event)">Adaugă</button>
-    </div>
-    <div class="card">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Field_Bouquet.jpg/400px-Field_Bouquet.jpg">
-      <h3>Buchet mixt</h3><p>60 lei</p>
-      <button onclick="add('Buchet mixt',60,event)">Adaugă</button>
-    </div>
-    <div class="card">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Chrysanthemum_white.JPG/400px-Chrysanthemum_white.JPG">
-      <h3>Crizanteme</h3><p>45 lei</p>
-      <button onclick="add('Crizanteme',45,event)">Adaugă</button>
-    </div>
-    <div class="card">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Carnation-flower.jpg/400px-Carnation-flower.jpg">
-      <h3>Garoafe</h3><p>35 lei</p>
-      <button onclick="add('Garoafe',35,event)">Adaugă</button>
-    </div>
-    <div class="card">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Marguerite_Daisy.jpg">
-      <h3>Margarete</h3><p>30 lei</p>
-      <button onclick="add('Margarete',30,event)">Adaugă</button>
-    </div>
-    <div class="card">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Lilium_lancifolium_Orange.JPG/400px-Lilium_lancifolium_Orange.JPG">
-      <h3>Crini</h3><p>55 lei</p>
-      <button onclick="add('Crini',55,event)">Adaugă</button>
-    </div>
-    <div class="card">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Wildflowers.jpg">
-      <h3>Flori de câmp</h3><p>25 lei</p>
-      <button onclick="add('Flori de câmp',25,event)">Adaugă</button>
-    </div>
-    <div class="card">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/2/2b/Orchid_pink.jpg">
-      <h3>Orhidee roz</h3><p>75 lei</p>
-      <button onclick="add('Orhidee roz',75,event)">Adaugă</button>
-    </div>
-    <div class="card">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Paeonia_lactiflora.jpg">
-      <h3>Bujori</h3><p>80 lei</p>
-      <button onclick="add('Bujori',80,event)">Adaugă</button>
-    </div>
-    <div class="card">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/5/52/Lilium_candidum.jpg">
-      <h3>Crini albi</h3><p>60 lei</p>
-      <button onclick="add('Crini albi',60,event)">Adaugă</button>
-    </div>
-    <div class="card">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Galanthus_nivalis_001.JPG/400px-Galanthus_nivalis_001.JPG">
-      <h3>Ghiocel</h3><p>20 lei</p>
-      <button onclick="add('Ghiocel',20,event)">Adaugă</button>
-    </div>
-    <div class="card">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Viola_tricolor_001.JPG/400px-Viola_tricolor_001.JPG">
-      <h3>Violete</h3><p>15 lei</p>
-      <button onclick="add('Violete',15,event)">Adaugă</button>
-    </div>
-    <div class="card">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Jasminum_officinale2.jpg/400px-Jasminum_officinale2.jpg">
-      <h3>Iasomie</h3><p>35 lei</p>
-      <button onclick="add('Iasomie',35,event)">Adaugă</button>
-    </div>
+    <div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/Rose_Red_1.jpg"><h3>Trandafiri</h3><p>50 lei</p><button onclick="add('Trandafiri',50,event)">Adaugă</button></div>
+    <div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0c/Tulipa_gesneriana_Lawrence.JPG"><h3>Lalele</h3><p>40 lei</p><button onclick="add('Lalele',40,event)">Adaugă</button></div>
+    <div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/1/12/Phalaenopsis_JPEG.png"><h3>Orhidee</h3><p>70 lei</p><button onclick="add('Orhidee',70,event)">Adaugă</button></div>
+    <div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Field_Bouquet.jpg"><h3>Buchet mixt</h3><p>60 lei</p><button onclick="add('Buchet mixt',60,event)">Adaugă</button></div>
+    <div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Chrysanthemum_white.JPG"><h3>Crizanteme</h3><p>45 lei</p><button onclick="add('Crizanteme',45,event)">Adaugă</button></div>
+    <div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/8/8c/Carnation-flower.jpg"><h3>Garoafe</h3><p>35 lei</p><button onclick="add('Garoafe',35,event)">Adaugă</button></div>
+    <div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Marguerite_Daisy.jpg"><h3>Margarete</h3><p>30 lei</p><button onclick="add('Margarete',30,event)">Adaugă</button></div>
+    <div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Lilium_lancifolium_Orange.JPG"><h3>Crini</h3><p>55 lei</p><button onclick="add('Crini',55,event)">Adaugă</button></div>
+    <div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Wildflowers.jpg"><h3>Flori de câmp</h3><p>25 lei</p><button onclick="add('Flori de câmp',25,event)">Adaugă</button></div>
+    <div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2b/Orchid_pink.jpg"><h3>Orhidee roz</h3><p>75 lei</p><button onclick="add('Orhidee roz',75,event)">Adaugă</button></div>
+    <div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Paeonia_lactiflora.jpg"><h3>Bujori</h3><p>80 lei</p><button onclick="add('Bujori',80,event)">Adaugă</button></div>
+    <div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/5/52/Lilium_candidum.jpg"><h3>Crini albi</h3><p>60 lei</p><button onclick="add('Crini albi',60,event)">Adaugă</button></div>
+    <div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Galanthus_nivalis_001.JPG/400px-Galanthus_nivalis_001.JPG"><h3>Ghiocel</h3><p>20 lei</p><button onclick="add('Ghiocel',20,event)">Adaugă</button></div>
+    <div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Viola_tricolor_001.JPG/400px-Viola_tricolor_001.JPG"><h3>Violete</h3><p>15 lei</p><button onclick="add('Violete',15,event)">Adaugă</button></div>
+    <div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Jasminum_officinale2.jpg/400px-Jasminum_officinale2.jpg"><h3>Iasomie</h3><p>35 lei</p><button onclick="add('Iasomie',35,event)">Adaugă</button></div>
+    <div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Narcissus_pseudonarcissus_(1).jpg/400px-Narcissus_pseudonarcissus_(1).jpg"><h3>Narcise</h3><p>30 lei</p><button onclick="add('Narcise',30,event)">Adaugă</button></div>
+    <div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Poppy_flower.jpg/400px-Poppy_flower.jpg"><h3>Maci</h3><p>25 lei</p><button onclick="add('Maci',25,event)">Adaugă</button></div>
+    <div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Iris_flower.jpg/400px-Iris_flower.jpg"><h3>Iris</h3><p>40 lei</p><button onclick="add('Iris',40,event)">Adaugă</button></div>
+    <div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Bluebell.jpg/400px-Bluebell.jpg"><h3>Clopoței</h3><p>20 lei</p><button onclick="add('Clopoței',20,event)">Adaugă</button></div>
   </div>
 </section>
 
-<section id="promo"><h2>🔥 Promoții</h2><p>Toate trandafirii -10% până la sfârșitul lunii!</p></section>
+<section id="promo"><h2>🔥 Promoții</h2><p>Toate trandafirii și buchetele mixte -10% doar luna aceasta! 🌸</p></section>
 
 <section id="order">
   <h2>📦 Finalizare comandă</h2>
@@ -272,11 +222,10 @@ footer{
   </form>
 </section>
 
-<section id="about"><h2>💐 Despre noi</h2><p>Suntem o florărie online cu flori proaspete și livrare rapidă!</p></section>
+<section id="about"><h2>💐 Despre noi</h2><p>Suntem o florărie online cu flori proaspete și livrare rapidă direct la tine acasă!</p></section>
 
 <footer>© 2026 Flori de vânzare 🌸</footer>
 
-<!-- COȘ -->
 <div id="cartIcon">🛒<span id="cartCount">0</span></div>
 <div id="cartPanel">
   <h2>🛒 Coșul tău</h2>
@@ -286,7 +235,10 @@ footer{
 </div>
 
 <script>
+// NAV
 function show(id){document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));document.getElementById(id).classList.add("active");}
+
+// CART
 let cart=JSON.parse(localStorage.getItem("cart"))||[];
 function save(){localStorage.setItem("cart",JSON.stringify(cart));}
 function updateCartDisplay(){
@@ -305,8 +257,7 @@ function updateCartDisplay(){
     div.appendChild(img);div.appendChild(info);div.appendChild(qty);
     cartItems.appendChild(div);
   });
-  const countElem=document.getElementById("cartCount");
-  countElem.textContent=cart.reduce((s,i)=>s+i.qty,0);
+  document.getElementById("cartCount").textContent=cart.reduce((s,i)=>s+i.qty,0);
   document.getElementById("cartTotal").textContent="Total: "+total+" lei";
 }
 function changeQty(index,delta){cart[index].qty+=delta;if(cart[index].qty<=0)cart.splice(index,1);save();updateCartDisplay();}
@@ -321,31 +272,23 @@ function animateToCart(event){
   const rect=img.getBoundingClientRect();clone.style.left=rect.left+"px";clone.style.top=rect.top+"px";clone.style.width=rect.width+"px";clone.style.height=rect.height+"px";
   document.body.appendChild(clone);
   const cartIcon=document.getElementById("cartIcon").getBoundingClientRect();
-  setTimeout(()=>{clone.style.left=cartIcon.left+"px";clone.style.top=cartIcon.top+"px";clone.style.width="0px";clone.style.height="0px";clone
-
-setTimeout(()=>{clone.style.left=cartIcon.left+"px";clone.style.top=cartIcon.top+"px";clone.style.width="0px";clone.style.height="0px";clone.style.opacity="0";},50);
+  setTimeout(()=>{clone.style.left=cartIcon.left+"px";clone.style.top=cartIcon.top+"px";clone.style.width="0px";clone.style.height="0px";clone.style.opacity="0";},50);
   setTimeout(()=>{clone.remove();},850);
 }
-
-// Deschide/închide panoul coșului
-document.getElementById("cartIcon").addEventListener("click",()=>{
-  document.getElementById("cartPanel").classList.toggle("open");
-});
-
-// Golește coșul
+document.getElementById("cartIcon").addEventListener("click",()=>{document.getElementById("cartPanel").classList.toggle("open");});
 function clearCart(){cart=[];save();updateCartDisplay();}
-
-// Completare produse în formular comandă
 function fillProducts(){
   document.getElementById("products").value=
     cart.map(i=>i.name+" x"+i.qty).join(", ")+
     "\nTotal: "+cart.reduce((s,i)=>s+i.price*i.qty,0)+" lei";
   setTimeout(()=>{document.getElementById("successMessage").style.display="block";},100);
 }
-
-// Inițializare coș la încărcare
 updateCartDisplay();
-</script>
 
+// SLIDER
+let slideIndex=0;
+function showSlides(){let slides=document.querySelectorAll('.slide');slides.forEach(s=>s.style.display='none');slideIndex++;if(slideIndex>slides.length){slideIndex=1}slides[slideIndex-1].style.display='block';setTimeout(showSlides,4000);}
+showSlides();
+</script>
 </body>
 </html>
