@@ -207,6 +207,44 @@ footer{
   nav a{padding:10px;}
   .card img{height:150px;}
 }
+
+/* COȘ PROFESIONAL */
+#cartPanel.open { right:0; }
+.cart-item {
+  display:flex;
+  align-items:center;
+  margin-bottom:10px;
+  border-bottom:1px solid #eee;
+  padding-bottom:10px;
+}
+.cart-item img {
+  width:50px;
+  height:50px;
+  object-fit:cover;
+  border-radius:8px;
+  margin-right:10px;
+}
+.cart-item .info {
+  flex:1;
+}
+.cart-item .info p {
+  margin:2px 0;
+  font-size:0.9em;
+}
+.cart-item .qty-controls {
+  display:flex;
+  align-items:center;
+  gap:5px;
+}
+.cart-item .qty-controls button {
+  background:#ff4081;
+  color:white;
+  border:none;
+  padding:2px 6px;
+  border-radius:4px;
+  cursor:pointer;
+  font-size:0.9em;
+}
 </style>
 </head>
 <body>
@@ -252,22 +290,12 @@ footer{
 <section id="catalog">
   <h2>🌼 Catalog Flori</h2>
   <div class="products">
-    <!-- toate florile vechi + noi -->
-    <div class="card"><img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400"><h3>Trandafiri</h3><p>50 lei</p><button onclick="add('Trandafiri',50)">Adaugă</button></div>
-    <div class="card"><img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=400"><h3>Lalele</h3><p>40 lei</p><button onclick="add('Lalele',40)">Adaugă</button></div>
-    <div class="card"><img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?w=400"><h3>Orhidee</h3><p>70 lei</p><button onclick="add('Orhidee',70)">Adaugă</button></div>
-    <div class="card"><img src="https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?w=400"><h3>Buchet mixt</h3><p>60 lei</p><button onclick="add('Buchet mixt',60)">Adaugă</button></div>
-    <div class="card"><img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec7?w=400"><h3>Garoafe</h3><p>35 lei</p><button onclick="add('Garoafe',35)">Adaugă</button></div>
-    <div class="card"><img src="https://images.unsplash.com/photo-1529429613230-57d021f9b63b?w=400"><h3>Crizanteme</h3><p>45 lei</p><button onclick="add('Crizanteme',45)">Adaugă</button></div>
-    <div class="card"><img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec8?w=400"><h3>Margarete</h3><p>30 lei</p><button onclick="add('Margarete',30)">Adaugă</button></div>
-    <div class="card"><img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec9?w=400"><h3>Crini</h3><p>55 lei</p><button onclick="add('Crini',55)">Adaugă</button></div>
-    <div class="card"><img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec10?w=400"><h3>Flori de câmp</h3><p>25 lei</p><button onclick="add('Flori de câmp',25)">Adaugă</button></div>
-    <div class="card"><img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec11?w=400"><h3>Orhidee roz</h3><p>75 lei</p><button onclick="add('Orhidee roz',75)">Adaugă</button></div>
-    <div class="card"><img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400"><h3>Bujori</h3><p>80 lei</p><button onclick="add('Bujori',80)">Adaugă</button></div>
-    <div class="card"><img src="https://images.unsplash.com/photo-1536305036250-0d0f1db8fef7?w=400"><h3>Crini albi</h3><p>60 lei</p><button onclick="add('Crini albi',60)">Adaugă</button></div>
-    <div class="card"><img src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=400"><h3>Ghiocel</h3><p>20 lei</p><button onclick="add('Ghiocel',20)">Adaugă</button></div>
-    <div class="card"><img src="https://images.unsplash.com/photo-1556837738-bce5c5750a43?w=400"><h3>Violete</h3><p>15 lei</p><button onclick="add('Violete',15)">Adaugă</button></div>
-    <div class="card"><img src="https://images.unsplash.com/photo-1504197885-65f2dcf987d8?w=400"><h3>Iasomie</h3><p>35 lei</p><button onclick="add('Iasomie',35)">Adaugă</button></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400"><h3>Trandafiri</h3><p>50 lei</p><button onclick="add('Trandafiri',50,event)">Adaugă</button></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=400"><h3>Lalele</h3><p>40 lei</p><button onclick="add('Lalele',40,event)">Adaugă</button></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?w=400"><h3>Orhidee</h3><p>70 lei</p><button onclick="add('Orhidee',70,event)">Adaugă</button></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?w=400"><h3>Buchet mixt</h3><p>60 lei</p><button onclick="add('Buchet mixt',60,event)">Adaugă</button></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400"><h3>Bujori</h3><p>80 lei</p><button onclick="add('Bujori',80,event)">Adaugă</button></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1536305036250-0d0f1db8fef7?w=400"><h3>Crini albi</h3><p>60 lei</p><button onclick="add('Crini albi',60,event)">Adaugă</button></div>
   </div>
 </section>
 
@@ -313,36 +341,107 @@ footer{
   © 2026 Flori de vânzare 🌸
 </footer>
 
-<script>
-// COȘ
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
+<!-- COȘ PROFESIONAL -->
+<div id="cartIcon">🛒<span id="cartCount">0</span></div>
+<div id="cartPanel"><h2>🛒 Coșul tău</h2><div id="cartItems"></div><p id="cartTotal">Total: 0 lei</p><button onclick="clearCart()">Golește coș</button></div>
 
+<script>
+// SECTIUNI
 function show(id){
   document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
 }
 
+// COȘ
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
 function save(){ localStorage.setItem("cart",JSON.stringify(cart)); }
 
-function add(name,price){
-  let item = cart.find(x=>x.name==name);
-  if(item) item.qty++;
-  else cart.push({name,price,qty:1});
-  save(); 
-  showConfetti();
+function updateCartDisplay(){
+  const cartItems = document.getElementById("cartItems");
+  cartItems.innerHTML = "";
+  let total = 0;
+  cart.forEach((item,index)=>{
+    total += item.price * item.qty;
+    const div = document.createElement("div");
+    div.className = "cart-item";
+    const img = document.createElement("img");
+    img.src = item.img;
+    const info = document.createElement("div");
+    info.className="info";
+    info.innerHTML=`<p>${item.name}</p><p>${item.price} lei x ${item.qty}</p>`;
+    const qtyControls = document.createElement("div");
+    qtyControls.className="qty-controls";
+    const minus = document.createElement("button"); minus.textContent="-"; minus.onclick=()=>{changeQty(index,-1)};
+    const plus = document.createElement("button"); plus.textContent="+"; plus.onclick=()=>{changeQty(index,1)};
+    qtyControls.appendChild(minus); qtyControls.appendChild(plus);
+    div.appendChild(img); div.appendChild(info); div.appendChild(qtyControls);
+    cartItems.appendChild(div);
+  });
+  document.getElementById("cartTotal").textContent="Total: "+total+" lei";
+  document.getElementById("cartCount").textContent=cart.reduce((s,i)=>s+i.qty,0);
 }
 
+function changeQty(index,delta){
+  cart[index].qty += delta;
+  if(cart[index].qty<=0) cart.splice(index,1);
+  save();
+  updateCartDisplay();
+}
+
+function add(name,price,event){
+  const img=event.target.parentElement.querySelector("img").src;
+  let item = cart.find(x=>x.name==name);
+  if(item) item.qty++;
+  else cart.push({name,price,qty:1,img});
+  save();
+  updateCartDisplay();
+  animateToCart(event);
+  openCart();
+}
+
+function animateToCart(event){
+  const img = event.target.parentElement.querySelector("img");
+  if(!img) return;
+  const clone=img.cloneNode(true);
+  const rect=img.getBoundingClientRect();
+  clone.style.position="fixed";
+  clone.style.left=rect.left+"px";
+  clone.style.top=rect.top+"px";
+  clone.style.width=rect.width+"px";
+  clone.style.height=rect.height+"px";
+  clone.style.transition="all 0.8s ease-in-out";
+  clone.style.zIndex=1000;
+  document.body.appendChild(clone);
+  const cartIcon=document.getElementById("cartIcon");
+  const cartRect=cartIcon.getBoundingClientRect();
+  setTimeout(()=>{
+    clone.style.left=cartRect.left+"px";
+    clone.style.top=cartRect.top+"px";
+    clone.style.width="0px";
+    clone.style.height="0px";
+    clone.style.opacity=0;
+  },50);
+  setTimeout(()=>{clone.remove();},900);
+}
+
+// COȘ PANEL
+const cartPanel=document.getElementById("cartPanel");
+function openCart(){cartPanel.classList.add("open");}
+function closeCart(){cartPanel.classList.remove("open");}
+document.getElementById("cartIcon").addEventListener("click",()=>{cartPanel.classList.toggle("open");});
+
+function clearCart(){cart=[]; save(); updateCartDisplay();}
+updateCartDisplay();
+
+// FORMULAR
 function fillProducts(){
   document.getElementById("products").value = cart.map(i=>i.name+" x"+i.qty).join(", ") + 
     "\nTotal: " + cart.reduce((s,i)=>s+i.price*i.qty,0) + " lei";
-  
-  // Arată mesajul de confirmare
-  setTimeout(() => {
-    document.getElementById("successMessage").style.display = "block";
-  }, 100);
+  setTimeout(() => { document.getElementById("successMessage").style.display="block"; }, 100);
 }
 
-// FLOARE CLICK PE BUN VENIT
+// BUN VENIT FLOARE CLICK
 document.getElementById("welcome").addEventListener("click", function(e){
   const flower = document.createElement("span");
   const flowers = ["🌸","🌹","🌼","💐","🌻"];
@@ -354,15 +453,12 @@ document.getElementById("welcome").addEventListener("click", function(e){
   flower.style.pointerEvents = "none";
   flower.style.opacity = 1;
   document.getElementById("welcome").appendChild(flower);
-
-  let y = e.offsetY;
-  let op = 1;
-  const floatUp = setInterval(()=>{
-    y -= 1;
-    op -= 0.02;
-    flower.style.top = y + "px";
-    flower.style.opacity = op;
-    if(op<=0) { clearInterval(floatUp); flower.remove(); }
+  let y=e.offsetY; let op=1;
+  const floatUp=setInterval(()=>{
+    y-=1; op-=0.02;
+    flower.style.top=y+"px";
+    flower.style.opacity=op;
+    if(op<=0){ clearInterval(floatUp); flower.remove(); }
   },20);
 });
 </script>
