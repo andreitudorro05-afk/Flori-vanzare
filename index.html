@@ -72,10 +72,6 @@ section.active{display:block;}
 .card h3, .card p{
   margin:10px 0;
   color:white;
-  transition: transform 0.3s;
-}
-.card:hover h3, .card:hover p{
-  transform: translateY(-5px);
 }
 button{
   margin:5px;
@@ -101,7 +97,7 @@ button:hover{
   max-width:600px;
   margin:auto;
 }
-input{
+input, select, textarea{
   width:100%;
   padding:8px;
   margin:6px 0;
@@ -203,7 +199,6 @@ footer{
   <a href="#" onclick="show('welcome')">Bun venit</a>
   <a href="#" onclick="show('catalog')">Catalog</a>
   <a href="#" onclick="show('promo')">Promoții</a>
-  <a href="#" onclick="show('cart')">Coș</a>
   <a href="#" onclick="show('order')">Comandă</a>
   <a href="#" onclick="show('about')">Despre noi</a>
 </nav>
@@ -217,8 +212,6 @@ footer{
 <!-- BUN VENIT -->
 <section id="welcome">
   <h2>🌞 Bun venit în lumea florilor noastre! 🌸</h2>
-
-  <!-- flori animate -->
   <div class="flower-container">
     <span class="flower" style="--i:0;">🌹</span>
     <span class="flower" style="--i:1;">🌼</span>
@@ -226,13 +219,9 @@ footer{
     <span class="flower" style="--i:3;">🌸</span>
     <span class="flower" style="--i:4;">🌻</span>
   </div>
-
   <p>
     Ne bucurăm că ai ajuns aici! Fiecare floare pe care o oferim este selectată cu grijă și dragoste. 💐  
     Aici găsești culori, parfum și energie pozitivă, gata să-ți facă ziua mai frumoasă! 🌈
-  </p>
-  <p style="animation:fadeIn 2s; font-weight:bold;">
-    Explorează catalogul nostru și lasă-te inspirat de frumusețea naturii! ✨
   </p>
 </section>
 
@@ -240,7 +229,6 @@ footer{
 <section id="catalog">
   <h2>🌼 Catalog Flori</h2>
   <div class="products">
-    <!-- carduri flori (la fel ca înainte) -->
     <div class="card">
       <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400">
       <h3>Trandafiri</h3>
@@ -259,7 +247,7 @@ footer{
       <p>70 lei</p>
       <button onclick="add('Orhidee',70)">Adaugă</button>
     </div>
-    <!-- mai adaugă restul cardurilor cum ai acum -->
+    <!-- mai adaugă restul cardurilor -->
   </div>
 </section>
 
@@ -269,25 +257,24 @@ footer{
   <p>Toate trandafirii -10% până la sfârșitul lunii!</p>
 </section>
 
-<!-- COȘ -->
-<section id="cart">
-  <h2>🛒 Coș cumpărături</h2>
-  <div class="cart">
-    <ul id="list"></ul>
-    <p><strong>Total:</strong> <span id="sum">0</span> lei</p>
-    <button onclick="clearCart()">Golește coșul</button>
-  </div>
-</section>
-
 <!-- COMANDĂ -->
 <section id="order">
   <h2>📦 Finalizare comandă</h2>
-  <div class="cart">
-    <input id="name" placeholder="Nume complet">
-    <input id="addr" placeholder="Adresă livrare">
-    <input id="phone" placeholder="Telefon">
-    <button onclick="sendOrder()">Trimite comanda</button>
-  </div>
+  <form class="cart" action="https://formspree.io/f/{your_form_id}" method="POST">
+    <input type="text" name="name" id="name" placeholder="Nume complet" required>
+    <input type="text" name="addr" id="addr" placeholder="Adresă livrare" required>
+    <input type="text" name="phone" id="phone" placeholder="Telefon" required>
+    <select name="county" id="county" required>
+      <option value="">Alege județul</option>
+      <option value="Bucuresti">București</option>
+      <option value="Cluj">Cluj</option>
+      <option value="Timiș">Timiș</option>
+      <option value="Iași">Iași</option>
+      <!-- restul județelor -->
+    </select>
+    <textarea name="products" id="products" readonly placeholder="Produse comandate"></textarea>
+    <button type="submit" onclick="fillProducts()">Trimite comanda</button>
+  </form>
 </section>
 
 <!-- DESPRE NOI -->
@@ -307,7 +294,6 @@ let cart = JSON.parse(localStorage.getItem("cart")) || [];
 function show(id){
   document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
-  updateCart();
 }
 
 function save(){ localStorage.setItem("cart",JSON.stringify(cart)); }
@@ -317,42 +303,13 @@ function add(name,price){
   if(item) item.qty++;
   else cart.push({name,price,qty:1});
   save(); 
-  updateCart();
-  showConfetti(); // flori cad cand adaugam
+  showConfetti();
 }
 
-function updateCart(){
-  let html="", total=0;
-  cart.forEach((i,k)=>{
-    total += i.price*i.qty;
-    html += `<li>${i.name} - ${i.price} lei x ${i.qty}
-    <button onclick="change(${k},1)">+</button>
-    <button onclick="change(${k},-1)">-</button>
-    <button onclick="removeItem(${k})">❌</button>
-    </li>`;
-  });
-  document.getElementById("list").innerHTML = html;
-  document.getElementById("sum").innerText = total;
-  save();
+function fillProducts(){
+  document.getElementById("products").value = cart.map(i=>i.name+" x"+i.qty).join(", ") + 
+    "\nTotal: " + cart.reduce((s,i)=>s+i.price*i.qty,0) + " lei";
 }
-
-function change(i,v){
-  cart[i].qty+=v;
-  if(cart[i].qty<1) cart.splice(i,1);
-  updateCart();
-}
-
-function removeItem(i){ cart.splice(i,1); updateCart(); }
-
-function clearCart(){ cart=[]; updateCart(); }
-
-function sendOrder(){
-  if(!cart.length){ alert("Coșul este gol!"); return; }
-  alert("Comanda ta a fost trimisă cu succes! 🌸");
-  clearCart();
-}
-
-updateCart();
 
 // FLOARE CLICK PE BUN VENIT
 document.getElementById("welcome").addEventListener("click", function(e){
