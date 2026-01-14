@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Flori de vânzare 🌸</title>
+
+<!-- Favicon inclus direct -->
+<link rel="icon" href="https://favicon.io/emoji-favicon/flower/favicon.ico" type="image/x-icon">
+
 <style>
 /* GLOBAL STYLING */
 body{
@@ -69,13 +73,13 @@ section.active{display:block;}
   object-fit:cover;
   border-bottom:2px solid white;
 }
-.card h3{
+.card h3, .card p{
   margin:10px 0;
   color:white;
+  transition: transform 0.3s;
 }
-.card p{
-  font-weight:bold;
-  color:white;
+.card:hover h3, .card:hover p{
+  transform: translateY(-5px);
 }
 button{
   margin:5px;
@@ -118,7 +122,62 @@ footer{
   margin-top:40px;
 }
 
-/* ANIMATIONS */
+/* BUN VENIT SECTION CU ANIMATII */
+#welcome {
+  background: linear-gradient(-45deg, #fff0f5, #ffe6f0, #ffd1dc, #ffe6f0);
+  background-size: 400% 400%;
+  animation: gradientShift 10s ease infinite, fadeIn 1.5s;
+  padding: 50px 20px;
+  border-radius: 15px;
+  margin: 20px auto;
+  max-width: 900px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+#welcome h2 {
+  color: #ff1744;
+  font-size: 2.2em;
+  margin-bottom: 20px;
+  animation: pulse 2s infinite;
+}
+#welcome p {
+  color: #c51162;
+  font-size:1.2em;
+  line-height:1.6em;
+}
+
+/* FLOARE ANIMATE */
+.flower-container {
+  position: relative;
+  height: 50px;
+  margin: 20px 0;
+}
+.flower {
+  position: absolute;
+  top: 0;
+  font-size: 2em;
+  animation: float 5s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.5s);
+}
+@keyframes float {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  50% { transform: translateY(-20px) rotate(15deg); opacity: 0.8; }
+  100% { transform: translateY(0) rotate(0deg); opacity: 1; }
+}
+
+/* ANIMATII */
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 @keyframes slideIn{
   from{opacity:0; transform:translateY(20px);}
   to{opacity:1; transform:translateY(0);}
@@ -144,6 +203,7 @@ footer{
 
 <nav>
   <a href="#" onclick="show('home')">Acasă</a>
+  <a href="#" onclick="show('welcome')">Bun venit</a>
   <a href="#" onclick="show('catalog')">Catalog</a>
   <a href="#" onclick="show('promo')">Promoții</a>
   <a href="#" onclick="show('cart')">Coș</a>
@@ -157,66 +217,88 @@ footer{
   <p>Flori proaspete, livrare rapidă, design colorat și dinamic!</p>
 </section>
 
+<!-- BUN VENIT -->
+<section id="welcome">
+  <h2>🌞 Bun venit în lumea florilor noastre! 🌸</h2>
+
+  <!-- flori animate -->
+  <div class="flower-container">
+    <span class="flower" style="--i:0;">🌹</span>
+    <span class="flower" style="--i:1;">🌼</span>
+    <span class="flower" style="--i:2;">💐</span>
+    <span class="flower" style="--i:3;">🌸</span>
+    <span class="flower" style="--i:4;">🌻</span>
+  </div>
+
+  <p>
+    Ne bucurăm că ai ajuns aici! Fiecare floare pe care o oferim este selectată cu grijă și dragoste. 💐  
+    Aici găsești culori, parfum și energie pozitivă, gata să-ți facă ziua mai frumoasă! 🌈
+  </p>
+  <p style="animation:fadeIn 2s; font-weight:bold;">
+    Explorează catalogul nostru și lasă-te inspirat de frumusețea naturii! ✨
+  </p>
+</section>
+
 <!-- CATALOG -->
 <section id="catalog">
   <h2>🌼 Catalog Flori</h2>
   <div class="products">
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93">
+      <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400">
       <h3>Trandafiri</h3>
       <p>50 lei</p>
       <button onclick="add('Trandafiri',50)">Adaugă</button>
     </div>
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946">
+      <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=400">
       <h3>Lalele</h3>
       <p>40 lei</p>
       <button onclick="add('Lalele',40)">Adaugă</button>
     </div>
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6">
+      <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?w=400">
       <h3>Orhidee</h3>
       <p>70 lei</p>
       <button onclick="add('Orhidee',70)">Adaugă</button>
     </div>
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1504196606672-aef5c9cefc92">
+      <img src="https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?w=400">
       <h3>Buchet mixt</h3>
       <p>60 lei</p>
       <button onclick="add('Buchet mixt',60)">Adaugă</button>
     </div>
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec7">
+      <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec7?w=400">
       <h3>Garoafe</h3>
       <p>35 lei</p>
       <button onclick="add('Garoafe',35)">Adaugă</button>
     </div>
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1529429613230-57d021f9b63b">
+      <img src="https://images.unsplash.com/photo-1529429613230-57d021f9b63b?w=400">
       <h3>Crizanteme</h3>
       <p>45 lei</p>
       <button onclick="add('Crizanteme',45)">Adaugă</button>
     </div>
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec8">
+      <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec8?w=400">
       <h3>Margarete</h3>
       <p>30 lei</p>
       <button onclick="add('Margarete',30)">Adaugă</button>
     </div>
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec9">
+      <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec9?w=400">
       <h3>Crini</h3>
       <p>55 lei</p>
       <button onclick="add('Crini',55)">Adaugă</button>
     </div>
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec10">
+      <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec10?w=400">
       <h3>Flori de câmp</h3>
       <p>25 lei</p>
       <button onclick="add('Flori de câmp',25)">Adaugă</button>
     </div>
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec11">
+      <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec11?w=400">
       <h3>Orhidee roz</h3>
       <p>75 lei</p>
       <button onclick="add('Orhidee roz',75)">Adaugă</button>
