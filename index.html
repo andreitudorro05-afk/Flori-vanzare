@@ -89,13 +89,14 @@ button:hover{
   transform:scale(1.05);
 }
 
-/* CART */
-.cart{
+/* CART / FORMULAR */
+.cart, form{
   background:white;
   padding:20px;
   border-radius:15px;
   max-width:600px;
   margin:auto;
+  box-shadow:0 6px 15px rgba(0,0,0,0.1);
 }
 input, select, textarea{
   width:100%;
@@ -229,25 +230,18 @@ footer{
 <section id="catalog">
   <h2>🌼 Catalog Flori</h2>
   <div class="products">
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400">
-      <h3>Trandafiri</h3>
-      <p>50 lei</p>
-      <button onclick="add('Trandafiri',50)">Adaugă</button>
-    </div>
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=400">
-      <h3>Lalele</h3>
-      <p>40 lei</p>
-      <button onclick="add('Lalele',40)">Adaugă</button>
-    </div>
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?w=400">
-      <h3>Orhidee</h3>
-      <p>70 lei</p>
-      <button onclick="add('Orhidee',70)">Adaugă</button>
-    </div>
-    <!-- mai adaugă restul cardurilor -->
+    <div class="card"><img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400"><h3>Trandafiri</h3><p>50 lei</p><button onclick="add('Trandafiri',50)">Adaugă</button></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=400"><h3>Lalele</h3><p>40 lei</p><button onclick="add('Lalele',40)">Adaugă</button></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?w=400"><h3>Orhidee</h3><p>70 lei</p><button onclick="add('Orhidee',70)">Adaugă</button></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?w=400"><h3>Buchet mixt</h3><p>60 lei</p><button onclick="add('Buchet mixt',60)">Adaugă</button></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec7?w=400"><h3>Garoafe</h3><p>35 lei</p><button onclick="add('Garoafe',35)">Adaugă</button></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1529429613230-57d021f9b63b?w=400"><h3>Crizanteme</h3><p>45 lei</p><button onclick="add('Crizanteme',45)">Adaugă</button></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec8?w=400"><h3>Margarete</h3><p>30 lei</p><button onclick="add('Margarete',30)">Adaugă</button></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec9?w=400"><h3>Crini</h3><p>55 lei</p><button onclick="add('Crini',55)">Adaugă</button></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec10?w=400"><h3>Flori de câmp</h3><p>25 lei</p><button onclick="add('Flori de câmp',25)">Adaugă</button></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec11?w=400"><h3>Orhidee roz</h3><p>75 lei</p><button onclick="add('Orhidee roz',75)">Adaugă</button></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400"><h3>Bujori</h3><p>80 lei</p><button onclick="add('Bujori',80)">Adaugă</button></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1536305036250-0d0f1db8fef7?w=400"><h3>Crini albi</h3><p>60 lei</p><button onclick="add('Crini albi',60)">Adaugă</button></div>
   </div>
 </section>
 
@@ -260,7 +254,7 @@ footer{
 <!-- COMANDĂ -->
 <section id="order">
   <h2>📦 Finalizare comandă</h2>
-  <form class="cart" action="https://formspree.io/f/{your_form_id}" method="POST">
+  <form class="cart" action="https://formspree.io/f/xpqqwwwk" method="POST" onsubmit="fillProducts()">
     <input type="text" name="name" id="name" placeholder="Nume complet" required>
     <input type="text" name="addr" id="addr" placeholder="Adresă livrare" required>
     <input type="text" name="phone" id="phone" placeholder="Telefon" required>
@@ -270,10 +264,15 @@ footer{
       <option value="Cluj">Cluj</option>
       <option value="Timiș">Timiș</option>
       <option value="Iași">Iași</option>
-      <!-- restul județelor -->
+      <option value="Brașov">Brașov</option>
+      <option value="Constanța">Constanța</option>
+      <option value="Sibiu">Sibiu</option>
+      <option value="Alba">Alba</option>
+      <option value="Bihor">Bihor</option>
     </select>
     <textarea name="products" id="products" readonly placeholder="Produse comandate"></textarea>
-    <button type="submit" onclick="fillProducts()">Trimite comanda</button>
+    <button type="submit">Trimite comanda</button>
+    <p id="successMessage" style="color:green; display:none;">Comanda ta a fost trimisă cu succes! 🌸</p>
   </form>
 </section>
 
@@ -309,6 +308,11 @@ function add(name,price){
 function fillProducts(){
   document.getElementById("products").value = cart.map(i=>i.name+" x"+i.qty).join(", ") + 
     "\nTotal: " + cart.reduce((s,i)=>s+i.price*i.qty,0) + " lei";
+  
+  // Arată mesajul de confirmare
+  setTimeout(() => {
+    document.getElementById("successMessage").style.display = "block";
+  }, 100);
 }
 
 // FLOARE CLICK PE BUN VENIT
